@@ -11,25 +11,17 @@
     if (is_object($mysqli)) {
 /*** checa login***/
         $funcbase->checalogin($mysqli);
+		$mysqli->set_charset("utf8");
     } else {
         die ("<h1>'No se establecio la conexion a bd'</h1>");
     }
 
-		$table = 'actividades';
+		$table = 'especialidades';
 		$usu = $_SESSION['login_user'];
-		$fecha = $_POST ['fecha'];
-		$activ = $_POST ['tactiv'];
-		$otra = $_POST ['otrot'];
-		$iddr = $_POST ['iddr'];
-		$idhosp = $_POST ['idhosp'];
-		$idproc = $_POST ['idproc'];
-		$idproductos = $_POST ['venta'];
-		$cant = $_POST ['cant'];
-		$remi = $_POST ['remision'];
-		
+		$especialidad = $_POST ['aesp'];
 //insercion en la tabla de actividades		
-	    $sqlCommand= "INSERT INTO $table (usu,fecha,activ,otra,iddr,idhosp,idproc,idproductos,cant,idremisiones)
-	    VALUES ('$usu','$fecha',$activ,'$otra',$iddr,$idhosp,$idproc,'$idproductos',$cant,'$remi')";
+	    $sqlCommand= "INSERT INTO $table (usualta,especialidad,status)
+	    VALUES ('$usu','$especialidad',1)";
 			
 	    // Execute the query here now
 	    $query=mysqli_query($mysqli, $sqlCommand); 
@@ -43,3 +35,4 @@
 			echo json_encode($data);	
 	  	}
 		
+?>

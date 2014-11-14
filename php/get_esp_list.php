@@ -34,9 +34,13 @@
 	    mysqli_close($mysqli);
 		/*funcion de conversion de caracteres */
 		
+		/* rutina para detectar falta de resultados */	
+		if(!isset($results)){
+			$results = -99;
+			echo json_encode($results);
+		}else{
+			echo json_encode($results);
+		};
     	
-		
-    	echo json_encode($results);
-
 
 ?>

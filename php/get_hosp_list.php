@@ -32,11 +32,15 @@
 	    mysqli_free_result($query);
 	    /* cerrar la conexion */
 	    mysqli_close($mysqli);
+
 		/*funcion de conversion de caracteres */
-		
-    	
-		
-    	echo json_encode($results);
+		/* rutina para detectar falta de resultados */	
+		if(!isset($results)){
+			$results = -99;
+			echo json_encode($results);
+		}else{
+			echo json_encode($results);
+		};
 
 
 ?>

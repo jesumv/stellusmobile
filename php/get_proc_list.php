@@ -17,7 +17,7 @@
 	
 	
     $req = "SELECT idprocedimientos,nombre FROM procedimientos WHERE nombre like '" 
-    . mysqli_real_escape_string($mysqli,$_GET['term']) . "%'"; 
+    . mysqli_real_escape_string($mysqli,$_GET['term'])."%'"; 
 	
     $query = mysqli_query($mysqli,$req);
     
@@ -33,10 +33,13 @@
 	    /* cerrar la conexion */
 	    mysqli_close($mysqli);
 		/*funcion de conversion de caracteres */
-		
-    	
-		
-    	echo json_encode($results);
+		/* rutina para detectar falta de resultados */	
+		if(!isset($results)){
+			$results = -99;
+			echo json_encode($results);
+		}else{
+			echo json_encode($results);
+		};
 
 
 ?>

@@ -21,10 +21,10 @@
 		$mysql_user = "root";
 		$mysql_password = "";
 		$mysql_database = "stellus1";
-
-
+		
 		$mysqli = new mysqli($mysql_hostname, $mysql_user, $mysql_password, $mysql_database);
-
+		$mysqli->set_charset("ISO-8859-1");
+		
 		if($mysqli->connect_errno > 0){
 		    die('No se establecio conexion a la base de datos [' . $mysqli->connect_error . ']');
 			return -1;

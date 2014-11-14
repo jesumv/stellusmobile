@@ -11,6 +11,7 @@
     if (is_object($mysqli)) {
 /*** checa login***/
         $funcbase->checalogin($mysqli);
+		$mysqli->set_charset("utf8");
     } else {
         die ("<h1>'No se establecio la conexion a bd'</h1>");
     }
@@ -20,7 +21,7 @@
 		$pat = $_POST ['pat'];
 		$mat = $_POST ['mat'];
 		$nombre = $_POST ['nombre'];
-		$idhosp = $_POST ['idhosp'];
+		$idhosp = $_POST ['iddrhosp'];
 		$dir = $_POST ['dir'];
 		$trab = $_POST ['trab'];
 		$cel= $_POST ['cel'];
@@ -34,19 +35,15 @@
 	    VALUES ('$usu','$pat','$mat','$nombre',$idhosp,'$dir','$trab','$cel','$email','$hor','$idesp',1,'$nomcorto')";
 			
 	    // Execute the query here now
-	    $query=mysqli_query($mysqli, $sqlCommand) or die ("error en alta de medico: ".mysqli_error($mysqli)); 
+	    $query=mysqli_query($mysqli, $sqlCommand); 
 
 		/* cerrar la conexion */
 	    	mysqli_close($mysqli);
 		/* enviar a la pagina de confirmacion de resultado */ 
 		 
 		if(!$query){
-						
-	  			echo '<script type="text/javascript">
-	  					location.href="error.php";
-	  				</script>';}else{	
-	  			echo '<script type="text/javascript">
-	  					location.href="exito.php";
-	  				</script>';}
+			$data =-99;
+			echo json_encode($data);	
+	  	}
 		
 ?>
