@@ -17,7 +17,7 @@
 
 		$table = 'actividades';
 		$usu = $_SESSION['login_user'];
-		$fecha = $_POST ['fecha'];
+		$fecha = $_POST ['fechaevent'];
 		$activ = $_POST ['tactiv'];
 		$otra = $_POST ['otrot'];
 		$iddr = $_POST ['iddr'];
@@ -29,7 +29,7 @@
 		
 //insercion en la tabla de actividades		
 	    $sqlCommand= "INSERT INTO $table (usu,fecha,activ,otra,iddr,idhosp,idproc,idproductos,cant,idremisiones)
-	    VALUES ('$usu','$fecha',$activ,'$otra',$iddr,$idhosp,$idproc,'$idproductos',$cant,'$remi')";
+	    VALUES ('$usu','$fecha',$activ,'$otra',$iddr,$idhosp,'$idproc','$idproductos','$cant','$remi')";
 			
 	    // Execute the query here now
 	    $query=mysqli_query($mysqli, $sqlCommand); 

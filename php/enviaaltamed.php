@@ -9,18 +9,19 @@
 /*** conexion a bd ***/
     $mysqli = $funcbase->conecta();
     if (is_object($mysqli)) {
+    	$acentos = $mysqli->query("SET NAMES 'utf8'");
 /*** checa login***/
         $funcbase->checalogin($mysqli);
-		$mysqli->set_charset("utf8");
+		$mysqli->set_charset("utf-8");
     } else {
         die ("<h1>'No se establecio la conexion a bd'</h1>");
     }
 
 		$table = 'doctores';
 		$usu = $_SESSION['login_user'];
-		$pat = $_POST ['pat'];
-		$mat = $_POST ['mat'];
-		$nombre = $_POST ['nombre'];
+		$pat = strtoupper($_POST ['pat']);
+		$mat = strtoupper($_POST ['mat']);
+		$nombre = strtoupper($_POST ['nombre']);
 		$idhosp = $_POST ['iddrhosp'];
 		$dir = $_POST ['dir'];
 		$trab = $_POST ['trab'];
@@ -28,7 +29,8 @@
 		$email= $_POST ['email'];
 		$hor = $_POST ['hor'];
 		$idesp = $_POST ['idesp'];
-		$nomcorto = $pat.", ".$nombre;
+		$linic = strtoupper(substr($mat,0,1));
+		$nomcorto = $pat." ".$linic.", ".$nombre;
 //insercion en la tabla de actividades		
 	    $sqlCommand= "INSERT INTO $table (usualta,paterno,materno,nombre,idhosp,
 	    dir,trab,cel,email,hor,idesp,status,nom_corto)
